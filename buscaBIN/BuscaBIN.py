@@ -19,19 +19,19 @@ end =['Endereco','Bairro','Cidade','Estado','Sigla','CEP']
 vet=[]
 
 while line!="":
-   
+    #Criacao de um vetor contendo todos os CEP's do arquivo
     record=registroCEP.unpack(line)
     vet.append(record[5])
     line=f.read(registroCEP.size)
 
 final=len(vet)-1
 contador=0
+#Algoritmo de busca binaria
 while encontrado==False:
 	contador=contador+1
 	meio=int((inicial+final)/2)
 	
 	if vet[meio] == sys.argv[1]:
-
 		encontrado=True
 		tamanho=(meio+1)*registroCEP.size
 		f.seek(tamanho-registroCEP.size)
@@ -40,8 +40,7 @@ while encontrado==False:
 		for i in range(0,len(dados)-1):
 			if(dados[i] != " "):
 				print end[i] + ':' + dados[i].strip().decode('latin1')  
-				
-                    # print len(dados[i])    
+			     
 	elif inicial > final:
 		print 'CEP NAO ENCONTRADO'
 		break
